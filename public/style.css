@@ -1,0 +1,54 @@
+html {
+  font-family: sans-serif;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+div.content {
+  background-color: #ddd;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 1em;
+}
+
+div.convo {
+  border-radius: 1em;
+  line-height: 1.4em;
+  margin-bottom: 1em;
+  max-width: 80%;
+  padding: 1em;
+  width: fit-content;
+}
+
+div.user {
+  background-color: #fff;
+}
+
+div.assistant {
+  background-color: #eee;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+div.input {
+  background-color: #ddd;
+  bottom: 0;
+  margin: 0;
+  padding: 1em;
+  /* position: fixed; */
+  width: 100%;
+}
+
+div.input form {
+  margin: 0;
+}

@@ -1,0 +1,15 @@
+<div class="content">
+  {{#each convo}}
+    <a name="{{this.dataValues.id}}" />
+    <div class="{{this.dataValues.role}} convo">
+      {{{this.dataValues.message}}}
+    </div>
+  {{/each}}
+</div>
+
+<div class="input">
+  <form action="http://localhost:3000/" method="POST">
+    <input name="q" type="text" />
+    <button type="submit">Q</button>
+  </form>
+</div>
