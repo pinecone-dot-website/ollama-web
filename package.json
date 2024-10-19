@@ -3,6 +3,7 @@
     "type": "module",
     "dependencies": {
         "express": "^4.21.1",
+        "express-handlebars": "^8.0.1",
         "ollama": "^0.5.9"
     },
     "devDependencies": {
