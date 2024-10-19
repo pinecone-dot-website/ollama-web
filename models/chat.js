@@ -12,9 +12,12 @@ const Chat = sequelize.define("Chat", {
     primaryKey: true,
   },
   role: DataTypes.STRING,
-  message: DataTypes.STRING,
+  message: DataTypes.TEXT,
 });
 
-sequelize.sync({ force: true });
+sequelize.sync({
+  alter: true,
+  // force: true
+});
 
 export default Chat;
