@@ -40,6 +40,13 @@ div.assistant {
   text-align: right;
 }
 
+div.convo pre {
+  background-color: #333;
+  color: #ddd;
+  padding: 1em;
+  text-align: left;
+}
+
 div.input {
   background-color: #ddd;
   bottom: 0;
