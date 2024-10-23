@@ -47,15 +47,30 @@ div.convo pre {
   text-align: left;
 }
 
+div.convo p {
+  text-align: left;
+}
+
 div.input {
   background-color: #ddd;
+  border-top: 1px solid #666;
   bottom: 0;
   margin: 0;
-  padding: 1em;
+  /* padding: 1em; */
   /* position: fixed; */
   width: 100%;
 }
 
 div.input form {
+  display: flex;
   margin: 0;
+}
+
+div.input form input {
+  flex-grow: 1;
+  margin: 1em;
+}
+
+div.input form button {
+  margin: 1em;
 }

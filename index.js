@@ -125,8 +125,9 @@ function format(row) {
   let message = htmlspecialchars(row.dataValues.message);
   // replace triple backticks
   message = replacecode(message);
-  // replace new line with <br>
-  message = message.replace(/(?:\r\n|\r|\n)/g, "<br>");
+  
+  // message = breakLines(message);
+  message = wrapInParagraphs(message);
 
   return {
     id: row.dataValues.id,
@@ -135,27 +136,55 @@ function format(row) {
   };
 }
 
+// replace new line with <br>
+function breakLines(str ){
+  return str.replace(/(?:\r\n|\r|\n)/g, "<br>");
+}
+
+//
+function wrapInParagraphs(text) {
+  return text
+    .split('\n')            // Split the text on new lines
+    .filter(line => line.trim() !== '')  // Remove empty lines
+    .map(line => `<p>${line.trim()}</p>`)  // Wrap each line in <p> tags
+    .join('');               // Join the array of paragraphs back into a single string
+}
+
 //
 function htmlspecialchars(str) {
-  var map = {
+  const regex = /[&<>"']/g;
+  const map = {
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
     "'": "&#39;", // ' -> &apos; for XML only
   };
-  return str.replace(/[&<>"']/g, function (m) {
+  return str.replace(regex, function (m) {
     return map[m];
   });
 }
 
 function replacecode(str) {
-  const regex = /([\s\S]*?)```(\w+)\n([\s\S]*?)```([\s\S]*)/;
-  const match = str.match(regex);
-  console.log("match", match);
+  const regex = /([\s\S]*?)```(\w+)\n([\s\S]*?)```/g;
+  const matches = [...str.matchAll(regex)];
+  console.log("matches", matches);
 
-  if (match) {
-    return `${match[1]}<pre><code class="${match[2]}">${match[3]}</code></pre>${match[4]}`;
+  if (matches.length) {
+    let result = "";
+
+    matches.forEach((match, index) => {
+      const beforeText = match[1];  // Text before the code block
+      const language = match[2];    // The language (e.g., "html")
+      const codeContent = match[3]; // The code block content
+      const afterText = str.slice(match.index + match[0].length); // Text after the code block
+
+      result += `${beforeText}<pre><code class="${language}">${codeContent}</code></pre>${afterText}`;
+
+      // lastIndex = match.index + match[0].length;
+    });
+
+    return result;
   }
 
   return str;
