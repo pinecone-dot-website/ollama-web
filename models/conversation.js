@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 
 const sequelize = new Sequelize(
-  "mysql://root:root@127.0.0.1:3306/ollama-web",
+  process.env.DB_CONNECT,
   {}
 );
 

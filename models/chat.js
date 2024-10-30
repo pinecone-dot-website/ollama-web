@@ -2,7 +2,7 @@ import { Sequelize, DataTypes } from "sequelize";
 import Conversation from "./conversation.js";
 
 const sequelize = new Sequelize(
-  "mysql://root:root@127.0.0.1:3306/ollama-web",
+  process.env.DB_CONNECT,
   {}
 );
 

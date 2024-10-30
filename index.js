@@ -1,3 +1,4 @@
+import 'dotenv/config.js';
 import ollama from "ollama"; // 127.0.0.1:11434
 import express from "express";
 import { engine } from "express-handlebars";
@@ -6,7 +7,7 @@ import Chat from "./models/chat.js";
 import Conversation from "./models/conversation.js";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 // Middleware for POST requests
 app.use(express.urlencoded({ extended: true }));
